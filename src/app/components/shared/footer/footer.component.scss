@@ -1,0 +1,16 @@
+$lightGray: #99a6b4;
+
+[footer] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  background: #fff;
+  span {
+    font-size: 12px;
+    height: 25px;
+    color: $lightGray;
+  }
+}

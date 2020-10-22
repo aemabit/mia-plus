@@ -1,0 +1,7 @@
+{
+  "name": "miaplus",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
