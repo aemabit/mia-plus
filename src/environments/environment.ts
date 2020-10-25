@@ -5,6 +5,16 @@
 export const environment = {
   production: false,
   logoUrl: "https://aemabitfolder.sfo2.digitaloceanspaces.com/kwiklee/logo.png",
+  firebaseConfig: {
+    apiKey: "AIzaSyCYGY1k3Cbta565rSG77xw3RZOb5DBLiYI",
+    authDomain: "miaplus.firebaseapp.com",
+    databaseURL: "https://miaplus.firebaseio.com",
+    projectId: "miaplus",
+    storageBucket: "miaplus.appspot.com",
+    messagingSenderId: "483669191620",
+    appId: "1:483669191620:web:0922f8b1cd55450a3ed291",
+    measurementId: "G-HPPFXBCM18"
+  },
 };
 
 /*
