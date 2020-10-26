@@ -1,5 +1,28 @@
 <app-header></app-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <div class="wrapper-selector">
+          <ion-card [routerLink]="['/titular']">
+            <ion-card-subtitle>Start fill the form</ion-card-subtitle>
+            <img
+              src="https://aemabitfolder.sfo2.digitaloceanspaces.com/MIAPLUS/8358.jpg"
+              alt="init"
+            />
+          </ion-card>
+          <ion-card [routerLink]="['/signin']">
+            <ion-card-subtitle>Continue</ion-card-subtitle>
+            <img
+              src="https://aemabitfolder.sfo2.digitaloceanspaces.com/MIAPLUS/5236.jpg"
+              alt="init"
+            />
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
 
 <app-footer></app-footer>
