@@ -8,9 +8,12 @@
   ion-card {
     padding: 40px;
     width: 280px;
-    height: 250px;
+    height: 230px;
     ion-card-subtitle{
         font-size: 14px;
+    }
+    &:nth-child(3){
+      margin-bottom: 60px;
     }
   }
 }

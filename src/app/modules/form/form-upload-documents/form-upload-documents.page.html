@@ -1,5 +1,422 @@
 <app-header></app-header>
 
-<ion-content> </ion-content>
+<ion-content *ngIf="!codeApproval">
+  <ion-col size-sm="6" offset-sm="3">
+    <form [formGroup]="codeForm" (submit)="verifyCode()">
+      <ion-list>
+        <ion-list-header>
+          Insert your personal code to continue...
+        </ion-list-header>
+        <div class="wrapper-form">
+          <ion-item>
+            <ion-label position="floating">Code </ion-label>
+            <ion-input type="text" formControlName="code"></ion-input>
+          </ion-item>
+        </div>
+
+        <ion-button [disabled]="!codeForm.valid" type="submit" expand="block">
+          Send Code
+        </ion-button>
+      </ion-list>
+    </form>
+  </ion-col>
+</ion-content>
+
+<ion-content>
+  <ion-col size-sm="6" offset-sm="3">
+    <form (submit)="onUploadDocs()">
+      <ion-list>
+        <div *ngIf="userAplicationType === 'citizen'">
+          <ion-list-header>Upload Information</ion-list-header>
+          <div class="wrapper-form">
+            <div>
+              <ion-item>
+                <ion-label for="file"> Social Security </ion-label>
+
+                <ion-avatar
+                  *ngIf="fb"
+                  style="width: 70px; height: 70px; margin-left: 15px"
+                >
+                  <img [src]="fb" alt="sample" />
+                </ion-avatar>
+
+                <ion-button
+                  #btnSubmitProduct
+                  slot="end"
+                  style="
+                    font-weight: 500;
+                    font-size: 16px;
+                    display: flex;
+                    width: 120px;
+                    height: 40px;
+                    margin: 10px 0;
+                  "
+                  (click)="fileInput.click()"
+                >
+                  <ion-icon name="image-outline"></ion-icon>
+                </ion-button>
+
+                <input
+                  #fileInput
+                  style="visibility: hidden; width: 1px"
+                  type="file"
+                  id="file"
+                  (change)="onFileSelected($event)"
+                  autocomplete="off"
+                  accept="image/x-png,image/gif,image/jpeg"
+                />
+              </ion-item>
+              <ion-item>
+                <ion-label for="file"> Passport </ion-label>
+
+                <ion-avatar
+                  *ngIf="fb"
+                  style="width: 70px; height: 70px; margin-left: 15px"
+                >
+                  <img [src]="fb" alt="sample" />
+                </ion-avatar>
+
+                <ion-button
+                  #btnSubmitProduct
+                  slot="end"
+                  style="
+                    font-weight: 500;
+                    font-size: 16px;
+                    display: flex;
+                    width: 120px;
+                    height: 40px;
+                    margin: 10px 0;
+                  "
+                  (click)="fileInput.click()"
+                >
+                  <ion-icon name="image-outline"></ion-icon>
+                </ion-button>
+
+                <input
+                  #fileInput
+                  style="visibility: hidden; width: 1px"
+                  type="file"
+                  id="file"
+                  (change)="onFileSelected($event)"
+                  autocomplete="off"
+                  accept="image/x-png,image/gif,image/jpeg"
+                />
+              </ion-item>
+
+              <ion-item>
+                <ion-label for="file"> Tax Declaration </ion-label>
+
+                <ion-avatar
+                  *ngIf="fb"
+                  style="width: 70px; height: 70px; margin-left: 15px"
+                >
+                  <img [src]="fb" alt="sample" />
+                </ion-avatar>
+
+                <ion-button
+                  #btnSubmitProduct
+                  slot="end"
+                  style="
+                    font-weight: 500;
+                    font-size: 16px;
+                    display: flex;
+                    width: 120px;
+                    height: 40px;
+                    margin: 10px 0;
+                  "
+                  (click)="fileInput.click()"
+                >
+                  <ion-icon name="image-outline"></ion-icon>
+                </ion-button>
+
+                <input
+                  #fileInput
+                  style="visibility: hidden; width: 1px"
+                  type="file"
+                  id="file"
+                  (change)="onFileSelected($event)"
+                  autocomplete="off"
+                  accept="image/x-png,image/gif,image/jpeg"
+                />
+              </ion-item>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="userAplicationType === 'resident'">
+          <ion-list-header>Upload Information</ion-list-header>
+          <div class="wrapper-form">
+            <div>
+              <ion-item>
+                <ion-label for="file"> Social Security </ion-label>
+
+                <ion-avatar
+                  *ngIf="fb"
+                  style="width: 70px; height: 70px; margin-left: 15px"
+                >
+                  <img [src]="fb" alt="sample" />
+                </ion-avatar>
+
+                <ion-button
+                  #btnSubmitProduct
+                  slot="end"
+                  style="
+                    font-weight: 500;
+                    font-size: 16px;
+                    display: flex;
+                    width: 120px;
+                    height: 40px;
+                    margin: 10px 0;
+                  "
+                  (click)="fileInput.click()"
+                >
+                  <ion-icon name="image-outline"></ion-icon>
+                </ion-button>
+
+                <input
+                  #fileInput
+                  style="visibility: hidden; width: 1px"
+                  type="file"
+                  id="file"
+                  (change)="onFileSelected($event)"
+                  autocomplete="off"
+                  accept="image/x-png,image/gif,image/jpeg"
+                />
+              </ion-item>
+              <ion-item>
+                <ion-label for="file"> Carnet of Residence </ion-label>
+
+                <ion-avatar
+                  *ngIf="fb"
+                  style="width: 70px; height: 70px; margin-left: 15px"
+                >
+                  <img [src]="fb" alt="sample" />
+                </ion-avatar>
+
+                <ion-button
+                  #btnSubmitProduct
+                  slot="end"
+                  style="
+                    font-weight: 500;
+                    font-size: 16px;
+                    display: flex;
+                    width: 120px;
+                    height: 40px;
+                    margin: 10px 0;
+                  "
+                  (click)="fileInput.click()"
+                >
+                  <ion-icon name="image-outline"></ion-icon>
+                </ion-button>
+
+                <input
+                  #fileInput
+                  style="visibility: hidden; width: 1px"
+                  type="file"
+                  id="file"
+                  (change)="onFileSelected($event)"
+                  autocomplete="off"
+                  accept="image/x-png,image/gif,image/jpeg"
+                />
+              </ion-item>
+
+              <ion-item>
+                <ion-label for="file"> Tax Declaration </ion-label>
+
+                <ion-avatar
+                  *ngIf="fb"
+                  style="width: 70px; height: 70px; margin-left: 15px"
+                >
+                  <img [src]="fb" alt="sample" />
+                </ion-avatar>
+
+                <ion-button
+                  #btnSubmitProduct
+                  slot="end"
+                  style="
+                    font-weight: 500;
+                    font-size: 16px;
+                    display: flex;
+                    width: 120px;
+                    height: 40px;
+                    margin: 10px 0;
+                  "
+                  (click)="fileInput.click()"
+                >
+                  <ion-icon name="image-outline"></ion-icon>
+                </ion-button>
+
+                <input
+                  #fileInput
+                  style="visibility: hidden; width: 1px"
+                  type="file"
+                  id="file"
+                  (change)="onFileSelected($event)"
+                  autocomplete="off"
+                  accept="image/x-png,image/gif,image/jpeg"
+                />
+              </ion-item>
+            </div>
+          </div>
+        </div>
+        <div #other *ngIf="userAplicationType === 'other'">
+          <ion-list-header>Upload Information</ion-list-header>
+          <div class="wrapper-form">
+            <div>
+              <ion-item>
+                <ion-label for="file"> Social Security </ion-label>
+
+                <ion-avatar
+                  *ngIf="fb"
+                  style="width: 70px; height: 70px; margin-left: 15px"
+                >
+                  <img [src]="fb" alt="sample" />
+                </ion-avatar>
+
+                <ion-button
+                  #btnSubmitProduct
+                  slot="end"
+                  style="
+                    font-weight: 500;
+                    font-size: 16px;
+                    display: flex;
+                    width: 120px;
+                    height: 40px;
+                    margin: 10px 0;
+                  "
+                  (click)="fileInput.click()"
+                >
+                  <ion-icon name="image-outline"></ion-icon>
+                </ion-button>
+
+                <input
+                  #fileInput
+                  style="visibility: hidden; width: 1px"
+                  type="file"
+                  id="file"
+                  (change)="onFileSelected($event)"
+                  autocomplete="off"
+                  accept="image/x-png,image/gif,image/jpeg"
+                />
+              </ion-item>
+
+              <ion-item>
+                <ion-label for="file"> Work Authorization </ion-label>
+
+                <ion-avatar
+                  *ngIf="fb"
+                  style="width: 70px; height: 70px; margin-left: 15px"
+                >
+                  <img [src]="fb" alt="sample" />
+                </ion-avatar>
+
+                <ion-button
+                  #btnSubmitProduct
+                  slot="end"
+                  style="
+                    font-weight: 500;
+                    font-size: 16px;
+                    display: flex;
+                    width: 120px;
+                    height: 40px;
+                    margin: 10px 0;
+                  "
+                  (click)="fileInput.click()"
+                >
+                  <ion-icon name="image-outline"></ion-icon>
+                </ion-button>
+
+                <input
+                  #fileInput
+                  style="visibility: hidden; width: 1px"
+                  type="file"
+                  id="file"
+                  (change)="onFileSelected($event)"
+                  autocomplete="off"
+                  accept="image/x-png,image/gif,image/jpeg"
+                />
+              </ion-item>
+
+              <ion-item>
+                <ion-label for="file"> Asylum </ion-label>
+
+                <ion-avatar
+                  *ngIf="fb"
+                  style="width: 70px; height: 70px; margin-left: 15px"
+                >
+                  <img [src]="fb" alt="sample" />
+                </ion-avatar>
+
+                <ion-button
+                  #btnSubmitProduct
+                  slot="end"
+                  style="
+                    font-weight: 500;
+                    font-size: 16px;
+                    display: flex;
+                    width: 120px;
+                    height: 40px;
+                    margin: 10px 0;
+                  "
+                  (click)="fileInput.click()"
+                >
+                  <ion-icon name="image-outline"></ion-icon>
+                </ion-button>
+
+                <input
+                  #fileInput
+                  style="visibility: hidden; width: 1px"
+                  type="file"
+                  id="file"
+                  (change)="onFileSelected($event)"
+                  autocomplete="off"
+                  accept="image/x-png,image/gif,image/jpeg"
+                />
+              </ion-item>
+              <ion-item>
+                <ion-label for="file"> Tax Declaration </ion-label>
+
+                <ion-avatar
+                  *ngIf="fb"
+                  style="width: 70px; height: 70px; margin-left: 15px"
+                >
+                  <img [src]="fb" alt="sample" />
+                </ion-avatar>
+
+                <ion-button
+                  #btnSubmitProduct
+                  slot="end"
+                  style="
+                    font-weight: 500;
+                    font-size: 16px;
+                    display: flex;
+                    width: 120px;
+                    height: 40px;
+                    margin: 10px 0;
+                  "
+                  (click)="fileInput.click()"
+                >
+                  <ion-icon name="image-outline"></ion-icon>
+                </ion-button>
+
+                <input
+                  #fileInput
+                  style="visibility: hidden; width: 1px"
+                  type="file"
+                  id="file"
+                  (change)="onFileSelected($event)"
+                  autocomplete="off"
+                  accept="image/x-png,image/gif,image/jpeg"
+                />
+              </ion-item>
+            </div>
+          </div>
+        </div>
+        <ion-button expand="block" *ngIf="userAplicationType" type="submit"
+          >Save Documents</ion-button
+        >
+      </ion-list>
+    </form>
+  </ion-col>
+</ion-content>
 
 <app-footer></app-footer>
