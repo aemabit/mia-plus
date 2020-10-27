@@ -1,5 +1,121 @@
 <app-header></app-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-col size-sm="6" offset-sm="3">
+    <form [formGroup]="employmentForm" (submit)="onSubmitEmploymentForm()">
+      <ion-list>
+        <ion-list-header>Employment Information</ion-list-header>
+        <div class="wrapper-form">
+          <div>
+            <ion-item>
+              <ion-label position="floating">Employer</ion-label>
+              <ion-input type="text" formControlName="employer"></ion-input>
+            </ion-item>
+
+            <div
+              class="alert-danger"
+              *ngIf="employer.invalid && (employer.dirty || employer.touched)"
+            >
+              <div
+                class="container-error-message"
+                *ngIf="employer.errors.required"
+              >
+                Employer is required
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <ion-item>
+              <ion-label position="floating">Annual Income</ion-label>
+              <ion-input type="text" formControlName="annualIncome"></ion-input>
+            </ion-item>
+
+            <div
+              class="alert-danger"
+              *ngIf="annualIncome.invalid && (annualIncome.dirty || annualIncome.touched)"
+            >
+              <div
+                class="container-error-message"
+                *ngIf="annualIncome.errors.required"
+              >
+                Annual Income is required
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <ion-item>
+              <ion-label position="floating"># Household on taxes </ion-label>
+              <ion-input type="text" formControlName="householdTax"></ion-input>
+            </ion-item>
+
+            <div
+              class="alert-danger"
+              *ngIf="householdTax.invalid && (householdTax.dirty || householdTax.touched)"
+            >
+              <div
+                class="container-error-message"
+                *ngIf="householdTax.errors.required"
+              >
+                # Household on taxes is required
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <ion-item>
+              <ion-label position="floating">Spouse Employer</ion-label>
+              <ion-input
+                type="text"
+                formControlName="spouseEmployer"
+              ></ion-input>
+            </ion-item>
+
+            <div
+              class="alert-danger"
+              *ngIf="spouseEmployer.invalid && (spouseEmployer.dirty || spouseEmployer.touched)"
+            >
+              <div
+                class="container-error-message"
+                *ngIf="spouseEmployer.errors.required"
+              >
+                Spouse Employer is required
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <ion-item>
+              <ion-label position="floating">Spouse Annual Employer</ion-label>
+              <ion-input
+                type="text"
+                formControlName="spouseAnnualIncome"
+              ></ion-input>
+            </ion-item>
+
+            <div
+              class="alert-danger"
+              *ngIf="spouseAnnualIncome.invalid && (spouseAnnualIncome.dirty || spouseAnnualIncome.touched)"
+            >
+              <div
+                class="container-error-message"
+                *ngIf="spouseAnnualIncome.errors.required"
+              >
+                Spouse Annual Employer is required
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-list>
+      <ion-button
+        type="submit"
+        expand="block"
+        [disabled]="!employmentForm.valid"
+        >Save & Continue</ion-button
+      >
+    </form>
+  </ion-col>
+</ion-content>
 
 <app-footer></app-footer>
