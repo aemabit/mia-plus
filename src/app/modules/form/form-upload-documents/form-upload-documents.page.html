@@ -17,12 +17,18 @@
         <ion-button [disabled]="!codeForm.valid" type="submit" expand="block">
           Send Code
         </ion-button>
+        <ion-button
+        [routerLink]="['/navigation']"
+        type="button"
+        expand="block"
+        >Go back to navigation</ion-button
+      >
       </ion-list>
     </form>
   </ion-col>
 </ion-content>
 
-<ion-content>
+<ion-content *ngIf="userAplicationType">
   <ion-col size-sm="6" offset-sm="3">
     <form (submit)="onUploadDocs()">
       <ion-list>
@@ -411,7 +417,7 @@
             </div>
           </div>
         </div>
-        <ion-button expand="block" *ngIf="userAplicationType" type="submit"
+        <ion-button expand="block" type="submit"
           >Save Documents</ion-button
         >
       </ion-list>
