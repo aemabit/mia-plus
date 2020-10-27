@@ -1,5 +1,255 @@
 <app-header></app-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-col size-sm="6" offset-sm="3">
+    <form [formGroup]="dependentForm" (submit)="onSubmitDependantForm()">
+      <ion-list>
+        <ion-list-header>Dependent Information</ion-list-header>
+        <div class="wrapper-form">
+          <div>
+            <ion-item>
+              <ion-label position="floating">Name</ion-label>
+              <ion-input type="text" formControlName="name"></ion-input>
+            </ion-item>
+
+            <div
+              class="alert-danger"
+              *ngIf="name.invalid && (name.dirty || name.touched)"
+            >
+              <div
+                class="container-error-message"
+                *ngIf="name.errors.minlength"
+              >
+                Name must be at least 5 characters long.
+              </div>
+              <div class="container-error-message" *ngIf="name.errors.required">
+                Name is required
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <ion-item>
+              <ion-label position="floating">Date of Birth</ion-label>
+              <ion-datetime
+                displayFormat="MM/DD/YYYY"
+                min="1954-03-14"
+                max="2012-12-09"
+                value="2002-09-23T15:03:46.789"
+                formControlName="dateOfBirth"
+              ></ion-datetime>
+            </ion-item>
+            <div
+              class="alert-danger"
+              *ngIf="dateOfBirth.invalid && (dateOfBirth.dirty || dateOfBirth.touched)"
+            >
+              <div
+                class="container-error-message"
+                *ngIf="dateOfBirth.errors.required"
+              >
+                Date of Birth is required
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <ion-item>
+              <ion-label>Gender</ion-label>
+              <ion-select formControlName="gender" placeholder="Select One">
+                <ion-select-option value="f">Female</ion-select-option>
+                <ion-select-option value="m">Male</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <div
+              class="alert-danger"
+              *ngIf="gender.invalid && (gender.dirty || gender.touched)"
+            >
+              <div
+                class="container-error-message"
+                *ngIf="gender.errors.required"
+              >
+                Gender is required
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <ion-item>
+              <ion-label position="floating">Relation</ion-label>
+              <ion-input type="text" formControlName="relation"></ion-input>
+            </ion-item>
+
+            <div
+              class="alert-danger"
+              *ngIf="relation.invalid && (relation.dirty || relation.touched)"
+            >
+              <div class="container-error-message" *ngIf="relation.errors.required">
+                Relation is required
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <ion-item>
+              <ion-label>Citizen Status</ion-label>
+              <ion-select
+                formControlName="citizenStatus"
+                placeholder="Select One"
+              >
+                <ion-select-option value="Citizen"
+                  >US. Citizen</ion-select-option
+                >
+                <ion-select-option value="Resident">Resident</ion-select-option>
+                <ion-select-option value="Parol">Parol</ion-select-option>
+                <ion-select-option value="Huellas"
+                  >Huellas (I-797C)</ion-select-option
+                >
+                <ion-select-option value="Working Permit"
+                  >Working Permit</ion-select-option
+                >
+              </ion-select>
+            </ion-item>
+
+            <div
+              class="alert-danger"
+              *ngIf="citizenStatus.invalid && (citizenStatus.dirty || citizenStatus.touched)"
+            >
+              <div
+                class="container-error-message"
+                *ngIf="citizenStatus.errors.required"
+              >
+                Citizen Status is required
+              </div>
+            </div>
+          </div>
+
+          <div
+            *ngIf="citizenStatus.value === 'Working Permit'; then workPermitStatusSelected; else citizenStatusSelected"
+          ></div>
+
+          <ng-template #citizenStatusSelected>
+            <div>
+              <ion-item>
+                <ion-label position="floating">Citizenship Number</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="citizenshipNumber"
+                ></ion-input>
+              </ion-item>
+
+              <div
+                class="alert-danger"
+                *ngIf="citizenshipNumber.invalid && (citizenshipNumber.dirty || citizenshipNumber.touched)"
+              >
+                <div
+                  class="container-error-message"
+                  *ngIf="citizenshipNumber.errors.required"
+                >
+                  Citizenship number is required
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #workPermitStatusSelected>
+            <div>
+              <ion-item>
+                <ion-label position="floating">Alien Number</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="alienNumber"
+                ></ion-input>
+              </ion-item>
+
+              <div
+                class="alert-danger"
+                *ngIf="alienNumber.invalid && (alienNumber.dirty || alienNumber.touched)"
+              >
+                <div
+                  class="container-error-message"
+                  *ngIf="alienNumber.errors.required"
+                >
+                  Alien number is required
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <ion-item>
+                <ion-label position="floating">Card Number</ion-label>
+                <ion-input type="text" formControlName="cardNumber"></ion-input>
+              </ion-item>
+
+              <div
+                class="alert-danger"
+                *ngIf="cardNumber.invalid && (cardNumber.dirty || cardNumber.touched)"
+              >
+                <div
+                  class="container-error-message"
+                  *ngIf="cardNumber.errors.required"
+                >
+                  Card Number is required
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <ion-item>
+                <ion-label position="floating">Category</ion-label>
+                <ion-input
+                  type="text"
+                  formControlName="workPermitCategory"
+                ></ion-input>
+              </ion-item>
+              <div
+                class="alert-danger"
+                *ngIf="workPermitCategory.invalid && (workPermitCategory.dirty || workPermitCategory.touched)"
+              >
+                <div
+                  class="container-error-message"
+                  *ngIf="workPermitCategory.errors.required"
+                >
+                  Work Permit Category is required
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <ion-item>
+                <ion-label position="floating">Date of Expired</ion-label>
+                <ion-datetime
+                  formControlName="dateOfWorkPermitExpiration"
+                  displayFormat="MM/DD/YYYY"
+                  min="1994-03-14"
+                  max="2012-12-09"
+                  value="2002-09-23T15:03:46.789"
+                ></ion-datetime>
+              </ion-item>
+
+              <div
+                class="alert-danger"
+                *ngIf="dateOfWorkPermitExpiration.invalid && (dateOfWorkPermitExpiration.dirty || dateOfWorkPermitExpiration.touched)"
+              >
+                <div
+                  class="container-error-message"
+                  *ngIf="dateOfWorkPermitExpiration.errors.required"
+                >
+                  Date of work permit expiration is required
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </ion-list>
+
+      <ion-button type="submit" expand="block" [disabled]="!dependentForm.valid"
+        >Save Dependent</ion-button
+      >
+      <!-- <ion-button type="submit" expand="block" [disabled]="!dependentForm.valid"
+        >Continue</ion-button
+      > -->
+    </form>
+  </ion-col>
+</ion-content>
 
 <app-footer></app-footer>

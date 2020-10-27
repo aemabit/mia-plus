@@ -22,6 +22,9 @@ export class FormTitularPage implements OnInit {
   get email() {
     return this.titularForm.get("email");
   }
+  get phone() {
+    return this.titularForm.get("phone");
+  }
   get dateOfBirth() {
     return this.titularForm.get("dateOfBirth");
   }
@@ -72,6 +75,10 @@ export class FormTitularPage implements OnInit {
         Validators.required,
         Validators.minLength(5),
         Validators.pattern(this.emailPattern),
+      ]),
+      phone: new FormControl("", [
+        Validators.required,
+        Validators.minLength(5),
       ]),
       dateOfBirth: new FormControl("", [Validators.required]),
       countryOfBirth: new FormControl("", [Validators.required]),

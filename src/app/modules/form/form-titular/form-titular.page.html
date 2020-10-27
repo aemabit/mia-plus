@@ -68,6 +68,32 @@
                 </div>
               </div>
 
+
+              <div>
+                <ion-item>
+                  <ion-label position="floating">Phone Number</ion-label>
+                  <ion-input type="number" formControlName="phone"></ion-input>
+                </ion-item>
+
+                <div
+                  class="alert-danger"
+                  *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+                >
+                  <div
+                    class="container-error-message"
+                    *ngIf="phone.errors.minlength"
+                  >
+                    Phone Number must be at least 5 characters long.
+                  </div>
+                  <div
+                    class="container-error-message"
+                    *ngIf="phone.errors.required"
+                  >
+                    Phone Number is required
+                  </div>
+                </div>
+              </div>
+
               <div>
                 <ion-item>
                   <ion-label position="floating">Date of Birth</ion-label>

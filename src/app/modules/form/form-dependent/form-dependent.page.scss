@@ -1,0 +1,25 @@
+.alert-danger {
+  color: #721c24;
+  background: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.container-error-message {
+  padding: 3px;
+}
+
+.wrapper-form {
+  margin-bottom: 25px;
+  ion-item {
+    --padding-start: 0px;
+    padding: 8px 0px;
+  }
+}
+
+form {
+  padding: 15px;
+}
+
+ion-list-header {
+  padding-left: 0px;
+}
