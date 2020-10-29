@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  logoUrl: "https://aemabitfolder.sfo2.digitaloceanspaces.com/kwiklee/logo.png",
+  logoUrl: "https://aemabitfolder.sfo2.digitaloceanspaces.com/MIAPLUS/LogoMIAPLUSazul.png",
   firebaseConfig: {
     apiKey: "AIzaSyCYGY1k3Cbta565rSG77xw3RZOb5DBLiYI",
     authDomain: "miaplus.firebaseapp.com",
