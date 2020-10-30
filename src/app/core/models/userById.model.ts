@@ -1,3 +1,5 @@
+import { Dependent } from './dependent.model';
+
 export interface Titular {
   name: string;
   email: string;
@@ -20,8 +22,10 @@ export interface Titular {
 
 export class UserById {
   constructor(
+    public userKeyId: string,
     public userId: string,
     public step: number,
-    public infoTitular: Titular
+    public infoTitular: Titular,
+    public infoDependent: Dependent[]
   ) {}
 }

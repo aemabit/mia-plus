@@ -84,7 +84,10 @@
               class="alert-danger"
               *ngIf="relation.invalid && (relation.dirty || relation.touched)"
             >
-              <div class="container-error-message" *ngIf="relation.errors.required">
+              <div
+                class="container-error-message"
+                *ngIf="relation.errors.required"
+              >
                 Relation is required
               </div>
             </div>
@@ -220,9 +223,9 @@
                 <ion-datetime
                   formControlName="dateOfWorkPermitExpiration"
                   displayFormat="MM/DD/YYYY"
-                  min="1994-03-14"
-                  max="2012-12-09"
-                  value="2002-09-23T15:03:46.789"
+                  min="2020-01-01"
+                  max="2030-12-31"
+                  value="2022-02-23T15:03:46.789"
                 ></ion-datetime>
               </ion-item>
 
@@ -242,12 +245,27 @@
         </div>
       </ion-list>
 
-      <ion-button type="submit" expand="block" [disabled]="!dependentForm.valid"
+      <ion-list *ngIf="groupDependent">
+        <ion-list-header>Dependent</ion-list-header>
+        <ion-item *ngFor="let d of groupDependent">
+          <ion-label>
+            <h6>{{d.name}}</h6>
+            <p>{{d.relation}}</p>
+          </ion-label>
+          <ion-icon name="trash" (click)="deleteDependent()"></ion-icon>
+        </ion-item>
+      </ion-list>
+
+      <ion-button
+        type="button"
+        (click)="saveDependant()"
+        expand="block"
+        [disabled]="!dependentForm.valid"
         >Save Dependent</ion-button
       >
-      <!-- <ion-button type="submit" expand="block" [disabled]="!dependentForm.valid"
-        >Continue</ion-button
-      > -->
+      <ion-button type="submit" expand="block" [disabled]="!dependentForm.valid"
+        >Continue to the next step</ion-button
+      >
     </form>
   </ion-col>
 </ion-content>

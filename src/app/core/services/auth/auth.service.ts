@@ -48,9 +48,11 @@ export class AuthService {
               lastUser.push(
                 new UserById(
                   // key,
+                  userData[key].userKeyId,
                   userData[key].userId,
                   userData[key].step,
-                  userData[key].infoTitular
+                  userData[key].infoTitular,
+                  userData[key].infoDependent
                 )
               );
             }
@@ -225,7 +227,7 @@ export class AuthService {
       workPermitCategory,
     };
     const step = 1;
-    const newUser = new UserById(userId, step, titular);
+    const newUser = new UserById("", userId, step, titular, null);
     return this.http
       .post<{ name: string }>(this.userURI, {
         ...newUser,
