@@ -1,5 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { LoadingController } from "@ionic/angular";
+import { Observable } from "rxjs";
+import { AlertService } from "src/app/core/services/alerts/alert.service";
+import {
+  AuthResponseData,
+  AuthService,
+} from "src/app/core/services/auth/auth.service";
 
 @Component({
   selector: "app-form-titular",
@@ -10,7 +18,12 @@ export class FormTitularPage implements OnInit {
   titularForm: FormGroup;
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  constructor() {
+  constructor(
+    private alertService: AlertService,
+    private router: Router,
+    private loadingCtrl: LoadingController,
+    private authService: AuthService
+  ) {
     this.titularForm = this.createForm();
   }
 
@@ -101,7 +114,68 @@ export class FormTitularPage implements OnInit {
 
   onSubmitTitularForm() {
     if (this.titularForm.valid) {
-      this.onResetForm();
+      this.loadingCtrl
+        .create({
+          keyboardClose: true,
+          message: "Loading...",
+        })
+        .then((loadingEl) => {
+          loadingEl.present();
+          let authObs: Observable<AuthResponseData>;
+          authObs = this.authService.signup(this.email.value, this.phone.value);
+          authObs.subscribe(
+            (resData) => {
+              this.authService
+                .createCustomer(
+                  resData.localId,
+                  this.name.value,
+                  this.email.value,
+                  this.phone.value,
+                  this.dateOfBirth.value,
+                  this.countryOfBirth.value,
+                  this.gender.value,
+                  this.maritalStatus.value,
+                  this.ssn.value,
+                  this.address.value,
+                  this.city.value,
+                  this.zipcode.value,
+                  this.citizenStatus.value,
+                  this.citizenshipNumber.value,
+                  this.alienNumber.value,
+                  this.cardNumber.value,
+                  this.dateOfWorkPermitExpiration.value,
+                  this.workPermitCategory.value
+                )
+                .subscribe(
+                  (res) => {
+                    if (res) {
+                      this.onResetForm();
+                      loadingEl.dismiss();
+                      this.router.navigateByUrl("/dependent");
+                    }
+                  },
+                  (errRes) => {
+                    console.log(errRes);
+                    loadingEl.dismiss();
+                    let header = "Registration Failed";
+                    let message = "Could not register you, please try again.";
+                    this.alertService.alertError(header, message);
+                  }
+                );
+            },
+            (errRes) => {
+              loadingEl.dismiss();
+              const code = errRes.error.error.message;
+              let header = "Registration Failed";
+              let message = "Could not register you, please try again.";
+              if (code === "EMAIL_EXISTS") {
+                message =
+                  "Your application has been submited, if you need continue please go to the navigation panel and press continue.";
+              }
+              this.alertService.alertError(header, message);
+            }
+          );
+        });
     }
   }
 

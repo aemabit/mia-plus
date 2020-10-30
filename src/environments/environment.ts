@@ -15,6 +15,7 @@ export const environment = {
     appId: "1:483669191620:web:0922f8b1cd55450a3ed291",
     measurementId: "G-HPPFXBCM18"
   },
+  SMS_TOKEN: "MIA_PLUS_TOKEN"
 };
 
 /*

@@ -1,5 +1,12 @@
 import { Component, OnInit } from "@angular/core";
+import { AngularFireDatabase } from '@angular/fire/database';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { UserById } from 'src/app/core/models/userById.model';
+import { AlertService } from 'src/app/core/services/alerts/alert.service';
+import { AuthResponseData, AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
   selector: "app-signin",
@@ -11,7 +18,7 @@ export class SigninPage implements OnInit {
 
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  constructor() {
+  constructor(private router: Router, private alertService: AlertService, private authService: AuthService, private db: AngularFireDatabase, private loadingCtrl: LoadingController) {
     this.loginForm = this.createForm();
   }
 
@@ -40,11 +47,53 @@ export class SigninPage implements OnInit {
 
   onSubmitLoginForm() {
     if (this.loginForm.valid) {
-      this.onResetForm();
+    this.loadingCtrl
+      .create({
+        keyboardClose: true,
+        message: "Loading...",
+      })
+      .then((loadingEl) => {
+        loadingEl.present();
+        let authObs: Observable<AuthResponseData>;
+        authObs = this.authService.login(this.email.value.trim(), this.phone.value);
+        authObs.subscribe(
+          (resData) => {
+            loadingEl.dismiss();
+            this.db
+              .list("user", (ref) =>
+                ref.orderByChild("userId").equalTo(resData.localId)
+              )
+              .valueChanges()
+              .subscribe((res: UserById[]) => {
+                this.loginForm.reset();
+                this.redirectByStep(res[0].step);
+              });
+          },
+          (errRes) => {
+            loadingEl.dismiss();
+            const code = errRes.error.error.message;
+            let header = `Authentication Failed`;
+            let message = code;
+            if (code === "EMAIL_NOT_FOUND") {
+              message = "Email could not be found";
+            }
+            this.alertService.alertError(header, message);
+          }
+        );
+      });
+      // this.onResetForm();
     }
   }
 
-  onResetForm(): void {
-    this.loginForm.reset();
+  redirectByStep(step: number) {
+    if (step === 1) {
+      this.router.navigateByUrl("/titular");
+    } else if (step === 2 ) {
+      this.router.navigateByUrl("/dependent");
+    } else if (step === 3 ) {
+      this.router.navigateByUrl("/employment");
+    } else {
+      this.router.navigateByUrl("/signin");
+    }
   }
 }
