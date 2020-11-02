@@ -20,12 +20,21 @@ export interface Titular {
   workPermitCategory: string;
 }
 
+export interface Employment{
+  employer: string,
+  annualIncome: number,
+  houseHoldTaxes: string,
+  spouseEmployer: string,
+  spouseAnnualIcome: number
+}
+
 export class UserById {
   constructor(
     public userKeyId: string,
     public userId: string,
     public step: number,
     public infoTitular: Titular,
-    public infoDependent: Dependent[]
+    public infoDependent: Dependent[],
+    public infoEmployment: Employment
   ) {}
 }

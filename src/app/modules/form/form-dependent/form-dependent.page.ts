@@ -162,9 +162,15 @@ export class FormDependentPage implements OnInit {
         "The contribution will be affected by the number of dependents that you declare. are you sure to continue? "
       )
       .then((res) => {
-        if (res){
-          this.router.navigateByUrl("employment")
+        if (res) {
+          this.dependantService
+            .updateStatus(this.loadedUserData[0].userKeyId, 2)
+            .subscribe((res) => {
+              if (res) {
+                this.router.navigateByUrl("employment");
+              }
+            });
         }
-      })
+      });
   }
 }

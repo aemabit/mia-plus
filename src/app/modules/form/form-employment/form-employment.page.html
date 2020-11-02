@@ -2,6 +2,7 @@
 
 <ion-content>
   <ion-col size-sm="6" offset-sm="3">
+    <app-step-nav></app-step-nav>
     <form [formGroup]="employmentForm" (submit)="onSubmitEmploymentForm()">
       <ion-list>
         <ion-list-header>Employment Information</ion-list-header>
@@ -87,7 +88,7 @@
 
           <div>
             <ion-item>
-              <ion-label position="floating">Spouse Annual Employer</ion-label>
+              <ion-label position="floating">Spouse Annual Income</ion-label>
               <ion-input
                 type="text"
                 formControlName="spouseAnnualIncome"

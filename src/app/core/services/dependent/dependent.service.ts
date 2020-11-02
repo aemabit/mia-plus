@@ -10,14 +10,41 @@ export class DependentService {
 
   saveDependents(userKeyId: string, infoDependent: Dependent[]) {
     const userRef = this.db.list("user");
-    userRef.update(userKeyId, { name, infoDependent });
+    userRef.update(userKeyId, { infoDependent });
     return userRef.valueChanges();
   }
 
+  updateStatus(userKeyId: string, step: number) {
+    const userRef = this.db.list("user");
+    userRef.update(userKeyId, { step });
+    return userRef.valueChanges();
+  }
 
   updateDependents(userKeyId: string, infoDependent: Dependent[]) {
     const userRef = this.db.list("user");
-    userRef.update(userKeyId, { name, infoDependent });
+    userRef.update(userKeyId, { infoDependent });
+    return userRef.valueChanges();
+  }
+
+  employInfo(
+    userKeyId: string,
+    employer: string,
+    annualIncome: number,
+    houseHoldTaxes: string,
+    spouseEmployer: string,
+    spouseAnnualIcome: number
+  ) {
+    const infoEmployment = {
+      employer,
+      annualIncome,
+      houseHoldTaxes,
+      spouseEmployer,
+      spouseAnnualIcome,
+    };
+    const step = 3;
+
+    const userRef = this.db.list("user");
+    userRef.update(userKeyId, { step, infoEmployment });
     return userRef.valueChanges();
   }
 

@@ -10,10 +10,12 @@
 
 .wrapper-form {
   margin-bottom: 25px;
-  ion-item {
-    --padding-start: 0px;
-    padding: 8px 0px;
-  }
+
+}
+
+ion-item {
+  --padding-start: 0px;
+  padding: 8px 0px;
 }
 
 form {
@@ -22,4 +24,12 @@ form {
 
 ion-list-header {
   padding-left: 0px;
+}
+
+ion-button{
+  margin-top: 15px;
+}
+
+ion-icon{
+  font-size: 20px;
 }
