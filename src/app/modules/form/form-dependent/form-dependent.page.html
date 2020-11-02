@@ -245,14 +245,14 @@
         </div>
       </ion-list>
 
-      <ion-list *ngIf="groupDependent">
+      <ion-list *ngIf="groupDependent ">
         <ion-list-header>Dependent</ion-list-header>
-        <ion-item *ngFor="let d of groupDependent">
+        <ion-item *ngFor="let d of groupDependent; let i = index">
           <ion-label>
             <h6>{{d.name}}</h6>
             <p>{{d.relation}}</p>
           </ion-label>
-          <ion-icon name="trash" (click)="deleteDependent()"></ion-icon>
+          <ion-icon name="trash" (click)="deleteDependent(i)"></ion-icon>
         </ion-item>
       </ion-list>
 
@@ -263,7 +263,7 @@
         [disabled]="!dependentForm.valid"
         >Save Dependent</ion-button
       >
-      <ion-button type="submit" expand="block" [disabled]="!dependentForm.valid"
+      <ion-button type="submit" expand="block"
         >Continue to the next step</ion-button
       >
     </form>

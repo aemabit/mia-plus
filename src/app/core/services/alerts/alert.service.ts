@@ -29,11 +29,7 @@ export class AlertService {
       .then((alertEl) => alertEl.present());
   }
 
-  alertValidation(
-    header: string,
-    message: string,
-    token: string
-  ): Promise<boolean> {
+  alertValidation(header: string, message: string): Promise<boolean> {
     let resolveFunction: (confirm: boolean) => void;
     let promise = new Promise<boolean>((resolve) => {
       resolveFunction = resolve;
@@ -42,12 +38,6 @@ export class AlertService {
       .create({
         header: header,
         message: message,
-        inputs: [
-          {
-            name: "password",
-            type: "text",
-          },
-        ],
         buttons: [
           {
             text: "Cancel",
@@ -57,11 +47,7 @@ export class AlertService {
           {
             text: "Confirm",
             handler: (alertData) => {
-              if (alertData.password === token) {
-                resolveFunction(true);
-              } else {
-                resolveFunction(false);
-              }
+              resolveFunction(true);
             },
           },
         ],

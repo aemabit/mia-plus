@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { SigninGuard } from "./modules/signin/signin.guard";
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
       import("./modules/form/form-dependent/form-dependent.module").then(
         (m) => m.FormDependentPageModule
       ),
+    canLoad: [SigninGuard],
   },
   {
     path: "employment",
@@ -39,6 +41,7 @@ const routes: Routes = [
       import("./modules/form/form-employment/form-employment.module").then(
         (m) => m.FormEmploymentPageModule
       ),
+    canLoad: [SigninGuard],
   },
   {
     path: "upload-documents",

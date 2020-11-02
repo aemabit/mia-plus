@@ -184,7 +184,6 @@ export class FormTitularPage implements OnInit {
               .subscribe(
                 (res) => {
                   if (res) {
-                    this.onResetForm();
                     loadingEl.dismiss();
                     sub.unsubscribe();
                     this.router.navigateByUrl("/dependent");
@@ -230,7 +229,6 @@ export class FormTitularPage implements OnInit {
                   .subscribe(
                     (res) => {
                       if (res) {
-                        this.onResetForm();
                         loadingEl.dismiss();
                         this.router.navigateByUrl("/dependent");
                       }
@@ -259,9 +257,5 @@ export class FormTitularPage implements OnInit {
           }
         });
     }
-  }
-
-  onResetForm(): void {
-    this.titularForm.reset();
   }
 }

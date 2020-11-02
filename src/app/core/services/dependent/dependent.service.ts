@@ -14,6 +14,13 @@ export class DependentService {
     return userRef.valueChanges();
   }
 
+
+  updateDependents(userKeyId: string, infoDependent: Dependent[]) {
+    const userRef = this.db.list("user");
+    userRef.update(userKeyId, { name, infoDependent });
+    return userRef.valueChanges();
+  }
+
   saveTitularChanges(
     userKeyId: string,
     name: string,

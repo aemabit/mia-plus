@@ -3,8 +3,10 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Dependent } from "src/app/core/models/dependent.model";
 import { UserById } from "src/app/core/models/userById.model";
+import { AlertService } from "src/app/core/services/alerts/alert.service";
 import { AuthService } from "src/app/core/services/auth/auth.service";
 import { DependentService } from "src/app/core/services/dependent/dependent.service";
+import { ToastService } from "src/app/core/services/toast/toast.service";
 
 @Component({
   selector: "app-form-dependent",
@@ -21,7 +23,9 @@ export class FormDependentPage implements OnInit {
   constructor(
     private dependantService: DependentService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService,
+    private alertService: AlertService
   ) {
     this.dependentForm = this.createForm();
   }
@@ -37,7 +41,6 @@ export class FormDependentPage implements OnInit {
         .subscribe((responseUserData: UserById[]) => {
           this.loadedUserData = responseUserData;
           this.groupDependent = responseUserData[0].infoDependent;
-          console.log(responseUserData);
         });
     });
   }
@@ -121,34 +124,47 @@ export class FormDependentPage implements OnInit {
 
     if (this.loadedUserData[0].infoDependent) {
       this.loadedUserData[0].infoDependent.push(depend);
-      this.dependantService
+      const sub = this.dependantService
         .saveDependents(
           this.loadedUserData[0].userKeyId,
           this.loadedUserData[0].infoDependent
         )
         .subscribe((res) => {
-          console.log(res);
+          this.toastService.successToast("Saved Dependent");
+          sub.unsubscribe();
         });
     } else {
       const newDependent: Dependent[] = [];
       newDependent.push(depend);
-      this.dependantService
+      const sub = this.dependantService
         .saveDependents(this.loadedUserData[0].userKeyId, newDependent)
         .subscribe((res) => {
-          console.log(res);
+          this.toastService.successToast("Saved Dependent");
+          sub.unsubscribe();
         });
     }
   }
 
-  deleteDependent() {}
-
-  onSubmitDependantForm() {
-    if (this.dependentForm.valid) {
-      this.onResetForm();
-    }
+  deleteDependent(indexDependent) {
+    this.groupDependent.splice(indexDependent, 1);
+    const sub = this.dependantService
+      .updateDependents(this.loadedUserData[0].userKeyId, this.groupDependent)
+      .subscribe((res) => {
+        this.toastService.successToast("Removed Dependent");
+        sub.unsubscribe();
+      });
   }
 
-  onResetForm(): void {
-    this.dependentForm.reset();
+  onSubmitDependantForm() {
+    this.alertService
+      .alertValidation(
+        "Continue?",
+        "The contribution will be affected by the number of dependents that you declare. are you sure to continue? "
+      )
+      .then((res) => {
+        if (res){
+          this.router.navigateByUrl("employment")
+        }
+      })
   }
 }
