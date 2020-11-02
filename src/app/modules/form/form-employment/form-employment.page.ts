@@ -5,6 +5,7 @@ import { LoadingController } from "@ionic/angular";
 import { UserById } from "src/app/core/models/userById.model";
 import { AuthService } from "src/app/core/services/auth/auth.service";
 import { DependentService } from "src/app/core/services/dependent/dependent.service";
+import { SmsService } from "src/app/core/services/sms/sms.service";
 import { ToastService } from "src/app/core/services/toast/toast.service";
 
 @Component({
@@ -22,7 +23,8 @@ export class FormEmploymentPage implements OnInit {
     private authService: AuthService,
     private loadingCtrl: LoadingController,
     private toastService: ToastService,
-    private router: Router
+    private router: Router,
+    private sms: SmsService
   ) {
     this.employmentForm = this.createForm();
   }
@@ -104,6 +106,7 @@ export class FormEmploymentPage implements OnInit {
                     "Application has been submited, Thank you!"
                   );
                   sub.unsubscribe();
+                  this.smsNotify();
                   this.authService.logout();
                   setTimeout(() => {
                     loadingEl.dismiss();
@@ -118,5 +121,17 @@ export class FormEmploymentPage implements OnInit {
             );
         });
     }
+  }
+
+  smsNotify() {
+    const message = `Thank you for providing us with your personal information, you will be contacted soon by one of our agents with the best rates and plans for you.\n Personal Code:${this.loadedUserData[0].infoTitular.phone}`;
+    this.sms
+      .sendMsg(`+1${this.loadedUserData[0].infoTitular.phone}`, message)
+      .subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => console.log(err)
+      );
   }
 }
