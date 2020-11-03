@@ -8,13 +8,19 @@
           <ion-list-header> Select an option </ion-list-header>
           <div class="wrapper-panel">
             <ion-card
-              [routerLink]="['/signin']"
               *ngFor="let obj of objRouter"
               [routerLink]="[obj.redirect]"
             >
               <ion-card-subtitle>{{obj.page}}</ion-card-subtitle>
-              <img [src]="obj.img" [alt]="obj.page" /> </ion-card
-            >
+              <img [src]="obj.img" [alt]="obj.page" />
+            </ion-card>
+            <ion-card (click)="downloadPDF()">
+              <ion-card-subtitle>Download PDF</ion-card-subtitle>
+              <img
+                src="https://aemabitfolder.sfo2.digitaloceanspaces.com/MIAPLUS/pdfimagedow.jpg"
+                alt="pdf"
+              />
+            </ion-card>
           </div>
         </ion-list>
       </ion-col>

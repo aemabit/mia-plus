@@ -28,18 +28,16 @@ export class PanelPage implements OnInit {
       img: "https://aemabitfolder.sfo2.digitaloceanspaces.com/MIAPLUS/8619.jpg",
     },
     {
-      page: "Download Information",
-      redirect: "/panel",
-      img:
-        "https://aemabitfolder.sfo2.digitaloceanspaces.com/MIAPLUS/pdfimagedow.jpg",
-    },
-    {
-      page: "Support",
-      img: "https://aemabitfolder.sfo2.digitaloceanspaces.com/MIAPLUS/6340.jpg"
+      page: "MIAPLUS+ Support",
+      img: "https://aemabitfolder.sfo2.digitaloceanspaces.com/MIAPLUS/6340.jpg",
     },
   ];
 
   constructor() {}
 
   ngOnInit() {}
+
+  downloadPDF(){
+
+  }
 }
