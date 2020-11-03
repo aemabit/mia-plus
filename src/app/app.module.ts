@@ -19,6 +19,9 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireStorageModule } from "@angular/fire/storage";
 
+import { FileOpener } from "@ionic-native/file-opener/ngx";
+import { File } from "@ionic-native/file/ngx";
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -37,6 +40,8 @@ import { AngularFireStorageModule } from "@angular/fire/storage";
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    FileOpener,
+    File
   ],
   bootstrap: [AppComponent],
 })

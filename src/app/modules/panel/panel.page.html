@@ -14,12 +14,16 @@
               <ion-card-subtitle>{{obj.page}}</ion-card-subtitle>
               <img [src]="obj.img" [alt]="obj.page" />
             </ion-card>
-            <ion-card (click)="downloadPDF()">
+            <ion-card>
               <ion-card-subtitle>Download PDF</ion-card-subtitle>
               <img
+                style="width: 50px"
                 src="https://aemabitfolder.sfo2.digitaloceanspaces.com/MIAPLUS/pdfimagedow.jpg"
                 alt="pdf"
               />
+              <ion-button #btn type="button" (click)="downloadPDF(btn)">
+                PDF
+              </ion-button>
             </ion-card>
           </div>
         </ion-list>
