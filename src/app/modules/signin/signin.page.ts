@@ -66,7 +66,7 @@ export class SigninPage implements OnInit {
               .valueChanges()
               .subscribe((res: UserById[]) => {
                 this.loginForm.reset();
-                this.redirectByStep(res[0].step);
+                this.router.navigateByUrl("/panel")
               });
           },
           (errRes) => {
@@ -85,15 +85,4 @@ export class SigninPage implements OnInit {
     }
   }
 
-  redirectByStep(step: number) {
-    if (step === 1) {
-      this.router.navigateByUrl("/titular");
-    } else if (step === 2 ) {
-      this.router.navigateByUrl("/dependent");
-    } else if (step === 3 ) {
-      this.router.navigateByUrl("/employment");
-    } else {
-      this.router.navigateByUrl("/signin");
-    }
-  }
 }

@@ -23,3 +23,14 @@ form {
 ion-list-header {
   padding-left: 0px;
 }
+
+.frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.check {
+  font-size: 30px;
+  color: #2dd36f;
+}

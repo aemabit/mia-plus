@@ -1,35 +1,10 @@
 <app-header></app-header>
 
-<ion-content *ngIf="!codeApproval">
-  <ion-col size-sm="6" offset-sm="3">
-    <form [formGroup]="codeForm" (submit)="verifyCode()">
-      <ion-list>
-        <ion-list-header>
-          Insert your personal code to continue...
-        </ion-list-header>
-        <div class="wrapper-form">
-          <ion-item>
-            <ion-label position="floating">Code </ion-label>
-            <ion-input type="text" formControlName="code"></ion-input>
-          </ion-item>
-        </div>
-
-        <ion-button [disabled]="!codeForm.valid" type="submit" expand="block">
-          Send Code
-        </ion-button>
-        <ion-button [routerLink]="['/navigation']" type="button" expand="block"
-          >Go back to navigation</ion-button
-        >
-      </ion-list>
-    </form>
-  </ion-col>
-</ion-content>
-
 <ion-content *ngIf="userAplicationType">
   <ion-col size-sm="6" offset-sm="3">
     <form (submit)="onUploadDocs()">
       <ion-list>
-        <div *ngIf="userAplicationType === 'citizen'">
+        <div *ngIf="userAplicationType === 'Citizen'">
           <ion-list-header>Upload Information</ion-list-header>
           <div class="wrapper-form">
             <div>
@@ -37,10 +12,11 @@
                 <ion-label for="file"> Social Security </ion-label>
 
                 <ion-avatar
-                  *ngIf="fb"
+                  *ngIf="this.validation1"
                   style="width: 70px; height: 70px; margin-left: 15px"
+                  class="frame"
                 >
-                  <img [src]="fb" alt="sample" />
+                  <ion-icon class="check" name="checkmark-circle"></ion-icon>
                 </ion-avatar>
 
                 <ion-button
@@ -54,17 +30,17 @@
                     height: 40px;
                     margin: 10px 0;
                   "
-                  (click)="fileInput.click()"
+                  (click)="fileInput1.click()"
                 >
                   <ion-icon name="image-outline"></ion-icon>
                 </ion-button>
 
                 <input
-                  #fileInput
+                  #fileInput1
                   style="visibility: hidden; width: 1px"
                   type="file"
                   id="file"
-                  (change)="onFileSelected($event)"
+                  (change)="onFileSelected($event, 'valid1')"
                   autocomplete="off"
                   accept="image/x-png,image/gif,image/jpeg"
                 />
@@ -73,10 +49,11 @@
                 <ion-label for="file"> Passport </ion-label>
 
                 <ion-avatar
-                  *ngIf="fb"
+                  *ngIf="this.validation2"
                   style="width: 70px; height: 70px; margin-left: 15px"
+                  class="frame"
                 >
-                  <img [src]="fb" alt="sample" />
+                  <ion-icon class="check" name="checkmark-circle"></ion-icon>
                 </ion-avatar>
 
                 <ion-button
@@ -90,17 +67,17 @@
                     height: 40px;
                     margin: 10px 0;
                   "
-                  (click)="fileInput.click()"
+                  (click)="fileInput2.click()"
                 >
                   <ion-icon name="image-outline"></ion-icon>
                 </ion-button>
 
                 <input
-                  #fileInput
+                  #fileInput2
                   style="visibility: hidden; width: 1px"
                   type="file"
                   id="file"
-                  (change)="onFileSelected($event)"
+                  (change)="onFileSelected($event, 'valid2')"
                   autocomplete="off"
                   accept="image/x-png,image/gif,image/jpeg"
                 />
@@ -110,10 +87,11 @@
                 <ion-label for="file"> Tax Declaration </ion-label>
 
                 <ion-avatar
-                  *ngIf="fb"
+                  *ngIf="this.validation3"
                   style="width: 70px; height: 70px; margin-left: 15px"
+                  class="frame"
                 >
-                  <img [src]="fb" alt="sample" />
+                  <ion-icon class="check" name="checkmark-circle"></ion-icon>
                 </ion-avatar>
 
                 <ion-button
@@ -127,17 +105,17 @@
                     height: 40px;
                     margin: 10px 0;
                   "
-                  (click)="fileInput.click()"
+                  (click)="fileInput3.click()"
                 >
                   <ion-icon name="image-outline"></ion-icon>
                 </ion-button>
 
                 <input
-                  #fileInput
+                  #fileInput3
                   style="visibility: hidden; width: 1px"
                   type="file"
                   id="file"
-                  (change)="onFileSelected($event)"
+                  (change)="onFileSelected($event, 'valid3')"
                   autocomplete="off"
                   accept="image/x-png,image/gif,image/jpeg"
                 />
@@ -145,7 +123,7 @@
             </div>
           </div>
         </div>
-        <div *ngIf="userAplicationType === 'resident'">
+        <div *ngIf="userAplicationType === 'Resident'">
           <ion-list-header>Upload Information</ion-list-header>
           <div class="wrapper-form">
             <div>
@@ -153,10 +131,11 @@
                 <ion-label for="file"> Social Security </ion-label>
 
                 <ion-avatar
-                  *ngIf="fb"
+                  *ngIf="this.validation1"
                   style="width: 70px; height: 70px; margin-left: 15px"
+                  class="frame"
                 >
-                  <img [src]="fb" alt="sample" />
+                  <ion-icon class="check" name="checkmark-circle"></ion-icon>
                 </ion-avatar>
 
                 <ion-button
@@ -170,17 +149,17 @@
                     height: 40px;
                     margin: 10px 0;
                   "
-                  (click)="fileInput.click()"
+                  (click)="fileInput4.click()"
                 >
                   <ion-icon name="image-outline"></ion-icon>
                 </ion-button>
 
                 <input
-                  #fileInput
+                  #fileInput4
                   style="visibility: hidden; width: 1px"
                   type="file"
                   id="file"
-                  (change)="onFileSelected($event)"
+                  (change)="onFileSelected($event, 'valid1')"
                   autocomplete="off"
                   accept="image/x-png,image/gif,image/jpeg"
                 />
@@ -189,10 +168,11 @@
                 <ion-label for="file"> Carnet of Residence </ion-label>
 
                 <ion-avatar
-                  *ngIf="fb"
+                  *ngIf="this.validation2"
                   style="width: 70px; height: 70px; margin-left: 15px"
+                  class="frame"
                 >
-                  <img [src]="fb" alt="sample" />
+                  <ion-icon class="check" name="checkmark-circle"></ion-icon>
                 </ion-avatar>
 
                 <ion-button
@@ -206,17 +186,17 @@
                     height: 40px;
                     margin: 10px 0;
                   "
-                  (click)="fileInput.click()"
+                  (click)="fileInput5.click()"
                 >
                   <ion-icon name="image-outline"></ion-icon>
                 </ion-button>
 
                 <input
-                  #fileInput
+                  #fileInput5
                   style="visibility: hidden; width: 1px"
                   type="file"
                   id="file"
-                  (change)="onFileSelected($event)"
+                  (change)="onFileSelected($event, 'valid2')"
                   autocomplete="off"
                   accept="image/x-png,image/gif,image/jpeg"
                 />
@@ -226,10 +206,11 @@
                 <ion-label for="file"> Tax Declaration </ion-label>
 
                 <ion-avatar
-                  *ngIf="fb"
+                  *ngIf="this.validation3"
                   style="width: 70px; height: 70px; margin-left: 15px"
+                  class="frame"
                 >
-                  <img [src]="fb" alt="sample" />
+                  <ion-icon class="check" name="checkmark-circle"></ion-icon>
                 </ion-avatar>
 
                 <ion-button
@@ -243,17 +224,17 @@
                     height: 40px;
                     margin: 10px 0;
                   "
-                  (click)="fileInput.click()"
+                  (click)="fileInput6.click()"
                 >
                   <ion-icon name="image-outline"></ion-icon>
                 </ion-button>
 
                 <input
-                  #fileInput
+                  #fileInput6
                   style="visibility: hidden; width: 1px"
                   type="file"
                   id="file"
-                  (change)="onFileSelected($event)"
+                  (change)="onFileSelected($event, 'valid3')"
                   autocomplete="off"
                   accept="image/x-png,image/gif,image/jpeg"
                 />
@@ -261,7 +242,10 @@
             </div>
           </div>
         </div>
-        <div #other *ngIf="userAplicationType === 'other'">
+        <div
+          #other
+          *ngIf="userAplicationType === 'Working Permit' || userAplicationType === 'Huellas' || userAplicationType === 'Parol'"
+        >
           <ion-list-header>Upload Information</ion-list-header>
           <div class="wrapper-form">
             <div>
@@ -269,10 +253,11 @@
                 <ion-label for="file"> Social Security </ion-label>
 
                 <ion-avatar
-                  *ngIf="fb"
+                  *ngIf="this.validation1"
                   style="width: 70px; height: 70px; margin-left: 15px"
+                  class="frame"
                 >
-                  <img [src]="fb" alt="sample" />
+                  <ion-icon class="check" name="checkmark-circle"></ion-icon>
                 </ion-avatar>
 
                 <ion-button
@@ -286,17 +271,17 @@
                     height: 40px;
                     margin: 10px 0;
                   "
-                  (click)="fileInput.click()"
+                  (click)="fileInput7.click()"
                 >
                   <ion-icon name="image-outline"></ion-icon>
                 </ion-button>
 
                 <input
-                  #fileInput
+                  #fileInput7
                   style="visibility: hidden; width: 1px"
                   type="file"
                   id="file"
-                  (change)="onFileSelected($event)"
+                  (change)="onFileSelected($event, 'valid1')"
                   autocomplete="off"
                   accept="image/x-png,image/gif,image/jpeg"
                 />
@@ -306,10 +291,11 @@
                 <ion-label for="file"> Work Authorization </ion-label>
 
                 <ion-avatar
-                  *ngIf="fb"
+                  *ngIf="this.validation2"
                   style="width: 70px; height: 70px; margin-left: 15px"
+                  class="frame"
                 >
-                  <img [src]="fb" alt="sample" />
+                  <ion-icon class="check" name="checkmark-circle"></ion-icon>
                 </ion-avatar>
 
                 <ion-button
@@ -323,17 +309,17 @@
                     height: 40px;
                     margin: 10px 0;
                   "
-                  (click)="fileInput.click()"
+                  (click)="fileInput8.click()"
                 >
                   <ion-icon name="image-outline"></ion-icon>
                 </ion-button>
 
                 <input
-                  #fileInput
+                  #fileInput8
                   style="visibility: hidden; width: 1px"
                   type="file"
                   id="file"
-                  (change)="onFileSelected($event)"
+                  (change)="onFileSelected($event, 'valid2')"
                   autocomplete="off"
                   accept="image/x-png,image/gif,image/jpeg"
                 />
@@ -343,10 +329,11 @@
                 <ion-label for="file"> Asylum </ion-label>
 
                 <ion-avatar
-                  *ngIf="fb"
+                  *ngIf="this.validation3"
                   style="width: 70px; height: 70px; margin-left: 15px"
+                  class="frame"
                 >
-                  <img [src]="fb" alt="sample" />
+                  <ion-icon class="check" name="checkmark-circle"></ion-icon>
                 </ion-avatar>
 
                 <ion-button
@@ -360,17 +347,17 @@
                     height: 40px;
                     margin: 10px 0;
                   "
-                  (click)="fileInput.click()"
+                  (click)="fileInput9.click()"
                 >
                   <ion-icon name="image-outline"></ion-icon>
                 </ion-button>
 
                 <input
-                  #fileInput
+                  #fileInput9
                   style="visibility: hidden; width: 1px"
                   type="file"
                   id="file"
-                  (change)="onFileSelected($event)"
+                  (change)="onFileSelected($event, 'valid3')"
                   autocomplete="off"
                   accept="image/x-png,image/gif,image/jpeg"
                 />
@@ -379,10 +366,11 @@
                 <ion-label for="file"> Tax Declaration </ion-label>
 
                 <ion-avatar
-                  *ngIf="fb"
+                  *ngIf="this.validation4"
                   style="width: 70px; height: 70px; margin-left: 15px"
+                  class="frame"
                 >
-                  <img [src]="fb" alt="sample" />
+                  <ion-icon class="check" name="checkmark-circle"></ion-icon>
                 </ion-avatar>
 
                 <ion-button
@@ -396,17 +384,17 @@
                     height: 40px;
                     margin: 10px 0;
                   "
-                  (click)="fileInput.click()"
+                  (click)="fileInput10.click()"
                 >
                   <ion-icon name="image-outline"></ion-icon>
                 </ion-button>
 
                 <input
-                  #fileInput
+                  #fileInput10
                   style="visibility: hidden; width: 1px"
                   type="file"
                   id="file"
-                  (change)="onFileSelected($event)"
+                  (change)="onFileSelected($event, 'valid4')"
                   autocomplete="off"
                   accept="image/x-png,image/gif,image/jpeg"
                 />
@@ -415,6 +403,9 @@
           </div>
         </div>
         <ion-button expand="block" type="submit">Save Documents</ion-button>
+        <ion-button expand="block" type="button" [routerLink]="['/panel']"
+          >Go to Panel</ion-button
+        >
       </ion-list>
     </form>
   </ion-col>

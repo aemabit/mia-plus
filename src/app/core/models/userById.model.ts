@@ -28,6 +28,13 @@ export interface Employment{
   spouseAnnualIcome: number
 }
 
+export interface Docs{
+  doc1: any,
+  doc2: any,
+  doc3: any,
+  doc4: any
+}
+
 export class UserById {
   constructor(
     public userKeyId: string,
@@ -35,6 +42,7 @@ export class UserById {
     public step: number,
     public infoTitular: Titular,
     public infoDependent: Dependent[],
-    public infoEmployment: Employment
+    public infoEmployment: Employment,
+    public infoDocs : Docs
   ) {}
 }

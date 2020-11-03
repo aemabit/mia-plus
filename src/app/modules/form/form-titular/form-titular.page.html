@@ -4,6 +4,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size-sm="6" offset-sm="3">
+        <app-step-nav *ngIf="loadedUserData.length > 0"></app-step-nav>
         <form [formGroup]="titularForm" (submit)="onSubmitTitularForm()">
           <ion-list>
             <ion-list-header>Titular Information</ion-list-header>

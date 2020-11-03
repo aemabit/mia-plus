@@ -115,6 +115,13 @@
         [disabled]="!employmentForm.valid"
         >Submit Application</ion-button
       >
+      <ion-button
+        [routerLink]="['/panel']"
+        type="button"
+        expand="block"
+        *ngIf="loadedUserData.length > 0"
+        >Go to Panel</ion-button
+      >
     </form>
   </ion-col>
 </ion-content>

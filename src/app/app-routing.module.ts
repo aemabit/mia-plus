@@ -49,6 +49,13 @@ const routes: Routes = [
       import(
         "./modules/form/form-upload-documents/form-upload-documents.module"
       ).then((m) => m.FormUploadDocumentsPageModule),
+    canLoad: [SigninGuard],
+  },
+  {
+    path: "panel",
+    loadChildren: () =>
+      import("./modules/panel/panel.module").then((m) => m.PanelPageModule),
+    canLoad: [SigninGuard],
   },
 ];
 

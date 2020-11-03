@@ -53,7 +53,8 @@ export class AuthService {
                   userData[key].step,
                   userData[key].infoTitular,
                   userData[key].infoDependent,
-                  userData[key].infoEmployment
+                  userData[key].infoEmployment,
+                  userData[key].infoDocs
                 )
               );
             }
@@ -228,7 +229,7 @@ export class AuthService {
       workPermitCategory,
     };
     const step = 1;
-    const newUser = new UserById("", userId, step, titular, null, null);
+    const newUser = new UserById("", userId, step, titular, null, null, null);
     return this.http
       .post<{ name: string }>(this.userURI, {
         ...newUser,

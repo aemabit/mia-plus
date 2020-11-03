@@ -124,7 +124,7 @@ export class FormEmploymentPage implements OnInit {
   }
 
   smsNotify() {
-    const message = `Thank you for providing us with your personal information, you will be contacted soon by one of our agents with the best rates and plans for you.\n Personal Code:${this.loadedUserData[0].infoTitular.phone}`;
+    const message = `Thank you for providing us with your personal information, you will be contacted soon by one of our agents with the best rates and plans for you.`;
     this.sms
       .sendMsg(`+1${this.loadedUserData[0].infoTitular.phone}`, message)
       .subscribe(

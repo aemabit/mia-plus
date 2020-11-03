@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { Dependent } from "../../models/dependent.model";
+import { Docs } from "../../models/userById.model";
 
 @Injectable({
   providedIn: "root",
@@ -23,6 +24,19 @@ export class DependentService {
   updateDependents(userKeyId: string, infoDependent: Dependent[]) {
     const userRef = this.db.list("user");
     userRef.update(userKeyId, { infoDependent });
+    return userRef.valueChanges();
+  }
+
+  updateDocs(userKeyId: string, doc1, doc2, doc3, doc4) {
+    const infoDocs = {
+      doc1,
+      doc2,
+      doc3,
+      doc4,
+    };
+
+    const userRef = this.db.list("user");
+    userRef.update(userKeyId, { infoDocs });
     return userRef.valueChanges();
   }
 
