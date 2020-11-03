@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-home-selector',
-  templateUrl: './home-selector.page.html',
-  styleUrls: ['./home-selector.page.scss'],
+  selector: "app-home-selector",
+  templateUrl: "./home-selector.page.html",
+  styleUrls: ["./home-selector.page.scss"],
 })
 export class HomeSelectorPage implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  redirectTo() {
+    window.location.href = "http://www.redirecturl.com";
   }
-
 }
