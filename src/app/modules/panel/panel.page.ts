@@ -216,11 +216,6 @@ export class PanelPage implements OnInit {
             i < this.loadedUserData[0].infoDependent.length;
             i++
           ) {
-            docDefinition.content.push({
-              canvas: [
-                { type: "line", x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 },
-              ],
-            });
             docDefinition.content.push(" ");
 
             docDefinition.content.push(
@@ -265,6 +260,11 @@ export class PanelPage implements OnInit {
                 bold: true,
               }
             );
+            docDefinition.content.push({
+              canvas: [
+                { type: "line", x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 },
+              ],
+            });
           }
         }
 

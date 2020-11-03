@@ -16,14 +16,16 @@
             </ion-card>
             <ion-card>
               <ion-card-subtitle>Download PDF</ion-card-subtitle>
-              <img
-                style="width: 50px"
-                src="https://aemabitfolder.sfo2.digitaloceanspaces.com/MIAPLUS/pdfimagedow.jpg"
-                alt="pdf"
-              />
-              <ion-button #btn type="button" (click)="downloadPDF(btn)">
-                PDF
-              </ion-button>
+              <div class="wrapper-pdf-btn">
+                <!-- <img
+                  style="width: 50px"
+                  src="https://aemabitfolder.sfo2.digitaloceanspaces.com/MIAPLUS/pdfimagedow.jpg"
+                  alt="pdf"
+                /> -->
+                <ion-button #btn type="button" (click)="downloadPDF(btn)">
+                  <ion-icon name="cloud-download-outline"></ion-icon>PDF
+                </ion-button>
+              </div>
             </ion-card>
           </div>
         </ion-list>

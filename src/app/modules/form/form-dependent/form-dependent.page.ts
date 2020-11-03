@@ -131,6 +131,7 @@ export class FormDependentPage implements OnInit {
         )
         .subscribe((res) => {
           this.toastService.successToast("Saved Dependent");
+          this.dependentForm.reset();
           sub.unsubscribe();
         });
     } else {
@@ -140,6 +141,7 @@ export class FormDependentPage implements OnInit {
         .saveDependents(this.loadedUserData[0].userKeyId, newDependent)
         .subscribe((res) => {
           this.toastService.successToast("Saved Dependent");
+          this.dependentForm.reset();
           sub.unsubscribe();
         });
     }
