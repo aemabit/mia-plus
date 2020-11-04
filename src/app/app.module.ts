@@ -35,13 +35,14 @@ import { File } from "@ionic-native/file/ngx";
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+    
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     FileOpener,
-    File
+    File,
   ],
   bootstrap: [AppComponent],
 })
