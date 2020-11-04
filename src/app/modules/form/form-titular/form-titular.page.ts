@@ -20,7 +20,7 @@ export class FormTitularPage implements OnInit {
   titularForm: FormGroup;
   loadedUserData: UserById[] = [];
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+  private ssnPattern: any = "^[0-9]*$";
   constructor(
     private alertService: AlertService,
     private router: Router,
@@ -134,7 +134,12 @@ export class FormTitularPage implements OnInit {
       countryOfBirth: new FormControl("", [Validators.required]),
       gender: new FormControl("", [Validators.required]),
       maritalStatus: new FormControl("", [Validators.required]),
-      ssn: new FormControl("", [Validators.required]),
+      ssn: new FormControl("", [
+        Validators.required,
+        Validators.minLength(9),
+        Validators.maxLength(9),
+        Validators.pattern(this.ssnPattern),
+      ]),
       address: new FormControl("", [Validators.required]),
       city: new FormControl("", [Validators.required]),
       zipcode: new FormControl("", [Validators.required]),

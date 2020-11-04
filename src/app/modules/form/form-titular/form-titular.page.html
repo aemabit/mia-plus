@@ -192,7 +192,7 @@
               <div>
                 <ion-item>
                   <ion-label position="floating">SSN</ion-label>
-                  <ion-input type="number" formControlName="ssn"></ion-input>
+                  <ion-input type="text" formControlName="ssn"></ion-input>
                 </ion-item>
 
                 <div
@@ -204,6 +204,12 @@
                     *ngIf="ssn.errors.required"
                   >
                     # SSN is required
+                  </div>
+                  <div
+                    class="container-error-message"
+                    *ngIf="ssn.errors.minlength || ssn.errors.maxlength"
+                  >
+                    Insert a valid # SSN
                   </div>
                 </div>
               </div>
