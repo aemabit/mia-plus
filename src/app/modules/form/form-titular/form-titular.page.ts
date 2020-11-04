@@ -175,7 +175,7 @@ export class FormTitularPage implements OnInit {
                 this.countryOfBirth.value,
                 this.gender.value,
                 this.maritalStatus.value,
-                this.ssn.value,
+                Number(this.ssn.value),
                 this.address.value,
                 this.city.value,
                 this.zipcode.value,
