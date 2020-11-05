@@ -346,17 +346,29 @@ export class PanelPage implements OnInit {
         let utf8 = new Uint8Array(buffer);
         let binaryArray = utf8.buffer;
         let blob = new Blob([binaryArray], { type: "application/pdf" });
-
-        this.file
-          .writeFile(this.file.dataDirectory, `order${ordernum}.pdf`, blob, {
-            replace: true,
-          })
-          .then((fileEntry) => {
-            this.fileOpener.open(
-              this.file.dataDirectory + `order${ordernum}.pdf`,
-              "application/pdf"
-            );
-          });
+        if (this.plt.is("ios") || this.plt.is("ipad")) {
+          this.file
+            .writeFile(this.file.cacheDirectory, `order${ordernum}.pdf`, blob, {
+              replace: true,
+            })
+            .then((fileEntry) => {
+              this.fileOpener.open(
+                this.file.cacheDirectory + `order${ordernum}.pdf`,
+                "application/pdf"
+              );
+            });
+        } else {
+          this.file
+            .writeFile(this.file.dataDirectory, `order${ordernum}.pdf`, blob, {
+              replace: true,
+            })
+            .then((fileEntry) => {
+              this.fileOpener.open(
+                this.file.dataDirectory + `order${ordernum}.pdf`,
+                "application/pdf"
+              );
+            });
+        }
       });
     } else {
       this.pdfObj.print();
