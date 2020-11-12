@@ -381,4 +381,8 @@ export class PanelPage implements OnInit {
       this.pdfObj.print();
     }
   }
+
+  closeSession(){
+    this.authService.logout()
+  }
 }

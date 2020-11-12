@@ -5,15 +5,15 @@
   align-items: center;
   padding: 10px;
   flex-wrap: wrap;
+  margin-bottom: 60px;
   ion-card {
     padding: 40px;
     width: 280px;
     height: 230px;
     ion-card-subtitle {
-      font-size: 14px;
-    }
-    &:last-child {
-      margin-bottom: 60px;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
     }
   }
 }
@@ -28,4 +28,41 @@ img {
   flex-direction: column;
   width: 100%;
   margin-top: 50px;
+}
+
+
+@media screen and (max-width: 1250px) {
+  .wrapper-panel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+    height: auto !important;
+    ion-card {
+      padding: 40px;
+      width: 280px;
+      height: 230px;
+      ion-card-subtitle {
+        font-size: 14px;
+      }
+      &:last-child {
+        margin-bottom: 60px;
+      }
+    }
+  }
+  
+  img {
+    margin-top: 25px;
+    width: 200px;
+  }
+  
+  .wrapper-pdf-btn {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 50px;
+  }
 }
