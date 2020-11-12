@@ -11,6 +11,6 @@ export class HomeSelectorPage implements OnInit {
   ngOnInit() {}
 
   redirectTo() {
-    window.location.href = "http://www.redirecturl.com";
+    window.location.href = "https://miaplus.vercel.app/";
   }
 }
