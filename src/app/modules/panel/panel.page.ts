@@ -37,6 +37,7 @@ export class PanelPage implements OnInit {
     },
     {
       page: "MIAPLUS+ Support",
+      redirect: "https://miaplus.vercel.app/",
       img: "https://aemabitfolder.sfo2.digitaloceanspaces.com/MIAPLUS/6340.jpg",
     },
   ];
@@ -210,61 +211,63 @@ export class PanelPage implements OnInit {
           style: "sectionHeader",
         });
 
-        if (this.loadedUserData[0].infoDependent.length > 0) {
-          for (
-            let i = 0;
-            i < this.loadedUserData[0].infoDependent.length;
-            i++
-          ) {
-            docDefinition.content.push(" ");
+        if (this.loadedUserData[0].infoDependent) {
+          if (this.loadedUserData[0].infoDependent.length > 0) {
+            for (
+              let i = 0;
+              i < this.loadedUserData[0].infoDependent.length;
+              i++
+            ) {
+              docDefinition.content.push(" ");
 
-            docDefinition.content.push(
-              {
-                text: `Name: ${this.loadedUserData[0].infoDependent[i].name} `,
-                bold: true,
-              },
-              {
-                text: `Gender: ${this.loadedUserData[0].infoDependent[i].gender} `,
-                bold: true,
-              },
-              {
-                text: `Birth: ${this.loadedUserData[0].infoDependent[i].dateOfBirth} `,
-                bold: true,
-              },
-              {
-                text: `Relation: ${this.loadedUserData[0].infoDependent[i].relation} `,
-                bold: true,
-              },
-              {
-                text: `Citizen Status: ${this.loadedUserData[0].infoDependent[i].citizenStatus} `,
-                bold: true,
-              },
-              {
-                text: `Citizenship Number: ${this.loadedUserData[0].infoDependent[i].citizenshipNumber} `,
-                bold: true,
-              },
-              {
-                text: `Alien Number: ${this.loadedUserData[0].infoDependent[i].alienNumber} `,
-                bold: true,
-              },
-              {
-                text: `Card Number: ${this.loadedUserData[0].infoDependent[i].cardNumber} `,
-                bold: true,
-              },
-              {
-                text: `Date of Work Permit Exp: ${this.loadedUserData[0].infoDependent[i].dateOfWorkPermitExpiration} `,
-                bold: true,
-              },
-              {
-                text: `Work Permit Category: ${this.loadedUserData[0].infoDependent[i].workPermitCategory} `,
-                bold: true,
-              }
-            );
-            docDefinition.content.push({
-              canvas: [
-                { type: "line", x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 },
-              ],
-            });
+              docDefinition.content.push(
+                {
+                  text: `Name: ${this.loadedUserData[0].infoDependent[i].name} `,
+                  bold: true,
+                },
+                {
+                  text: `Gender: ${this.loadedUserData[0].infoDependent[i].gender} `,
+                  bold: true,
+                },
+                {
+                  text: `Birth: ${this.loadedUserData[0].infoDependent[i].dateOfBirth} `,
+                  bold: true,
+                },
+                {
+                  text: `Relation: ${this.loadedUserData[0].infoDependent[i].relation} `,
+                  bold: true,
+                },
+                {
+                  text: `Citizen Status: ${this.loadedUserData[0].infoDependent[i].citizenStatus} `,
+                  bold: true,
+                },
+                {
+                  text: `Citizenship Number: ${this.loadedUserData[0].infoDependent[i].citizenshipNumber} `,
+                  bold: true,
+                },
+                {
+                  text: `Alien Number: ${this.loadedUserData[0].infoDependent[i].alienNumber} `,
+                  bold: true,
+                },
+                {
+                  text: `Card Number: ${this.loadedUserData[0].infoDependent[i].cardNumber} `,
+                  bold: true,
+                },
+                {
+                  text: `Date of Work Permit Exp: ${this.loadedUserData[0].infoDependent[i].dateOfWorkPermitExpiration} `,
+                  bold: true,
+                },
+                {
+                  text: `Work Permit Category: ${this.loadedUserData[0].infoDependent[i].workPermitCategory} `,
+                  bold: true,
+                }
+              );
+              docDefinition.content.push({
+                canvas: [
+                  { type: "line", x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1 },
+                ],
+              });
+            }
           }
         }
 
@@ -275,28 +278,30 @@ export class PanelPage implements OnInit {
           style: "sectionHeader",
         });
 
-        docDefinition.content.push(
-          {
-            text: `Employer: ${this.loadedUserData[0].infoEmployment.employer} `,
-            bold: true,
-          },
-          {
-            text: `Annual Income: ${this.loadedUserData[0].infoEmployment.annualIncome} `,
-            bold: true,
-          },
-          {
-            text: `Household Taxes: ${this.loadedUserData[0].infoEmployment.houseHoldTaxes} `,
-            bold: true,
-          },
-          {
-            text: `Spouse Employer: ${this.loadedUserData[0].infoEmployment.spouseEmployer} `,
-            bold: true,
-          },
-          {
-            text: `Spuse Annual Income: ${this.loadedUserData[0].infoEmployment.spouseAnnualIcome} `,
-            bold: true,
-          }
-        );
+        if (this.loadedUserData[0].infoEmployment) {
+          docDefinition.content.push(
+            {
+              text: `Employer: ${this.loadedUserData[0].infoEmployment.employer} `,
+              bold: true,
+            },
+            {
+              text: `Annual Income: ${this.loadedUserData[0].infoEmployment.annualIncome} `,
+              bold: true,
+            },
+            {
+              text: `Household Taxes: ${this.loadedUserData[0].infoEmployment.houseHoldTaxes} `,
+              bold: true,
+            },
+            {
+              text: `Spouse Employer: ${this.loadedUserData[0].infoEmployment.spouseEmployer} `,
+              bold: true,
+            },
+            {
+              text: `Spuse Annual Income: ${this.loadedUserData[0].infoEmployment.spouseAnnualIcome} `,
+              bold: true,
+            }
+          );
+        }
 
         docDefinition.content.push(" ");
 
@@ -305,30 +310,32 @@ export class PanelPage implements OnInit {
           style: "sectionHeader",
         });
 
-        docDefinition.content.push(
-          {
-            text: `Document: ${this.loadedUserData[0].infoDocs.doc1} `,
-            bold: true,
-          },
-          { text: " " },
+        if (this.loadedUserData[0].infoDocs) {
+          docDefinition.content.push(
+            {
+              text: `Document: ${this.loadedUserData[0].infoDocs.doc1} `,
+              bold: true,
+            },
+            { text: " " },
 
-          {
-            text: `Document: ${this.loadedUserData[0].infoDocs.doc2} `,
-            bold: true,
-          },
-          { text: " " },
+            {
+              text: `Document: ${this.loadedUserData[0].infoDocs.doc2} `,
+              bold: true,
+            },
+            { text: " " },
 
-          {
-            text: `Document: ${this.loadedUserData[0].infoDocs.doc3} `,
-            bold: true,
-          },
-          { text: " " },
+            {
+              text: `Document: ${this.loadedUserData[0].infoDocs.doc3} `,
+              bold: true,
+            },
+            { text: " " },
 
-          {
-            text: `Document: ${this.loadedUserData[0].infoDocs.doc4} `,
-            bold: true,
-          }
-        );
+            {
+              text: `Document: ${this.loadedUserData[0].infoDocs.doc4} `,
+              bold: true,
+            }
+          );
+        }
 
         this.pdfObj = pdfMake.createPdf(docDefinition);
         setTimeout(() => {
