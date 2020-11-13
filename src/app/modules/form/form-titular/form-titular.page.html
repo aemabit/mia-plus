@@ -308,7 +308,7 @@
               </div>
 
               <div
-                *ngIf="citizenStatus.value === 'Working Permit'; then workPermitStatusSelected; else citizenStatusSelected"
+                *ngIf="citizenStatus.value === 'Working Permit' || citizenStatus.value === 'Huellas' || citizenStatus.value === 'Parol'; then workPermitStatusSelected; else citizenStatusSelected"
               ></div>
 
               <ng-template #citizenStatusSelected>
