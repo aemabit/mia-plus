@@ -161,7 +161,7 @@ export class FormDependentPage implements OnInit {
     this.alertService
       .alertValidation(
         "Continue?",
-        "The contribution will be affected by the number of dependents that you declare. are you sure to continue? "
+        "you Register 0 dependents."
       )
       .then((res) => {
         if (res) {
